@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { getAssetPath } from "@/lib/utils";
 
 interface ImageCarouselProps {
     images: string[];
@@ -107,7 +108,7 @@ const ImageCarousel = ({ images, currentIndex, onClose, onNavigate }: ImageCarou
                 >
                     {isVideo ? (
                         <video
-                            src={currentMedia}
+                            src={getAssetPath(currentMedia)}
                             controls
                             autoPlay
                             loop
@@ -117,7 +118,7 @@ const ImageCarousel = ({ images, currentIndex, onClose, onNavigate }: ImageCarou
                         </video>
                     ) : (
                         <img
-                            src={currentMedia}
+                            src={getAssetPath(currentMedia)}
                             alt={`Gallery image ${currentIndex + 1}`}
                             className="max-w-full max-h-[85vh] rounded-lg shadow-2xl object-contain"
                         />

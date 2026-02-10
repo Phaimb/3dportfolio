@@ -4,6 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { getProjectById } from "@/data/projectsData";
 import { useState, useEffect } from "react";
 import ImageCarousel from "@/components/ImageCarousel";
+import { getAssetPath } from "@/lib/utils";
 
 const ProjectDetail = () => {
     const { projectId } = useParams<{ projectId: string }>();
@@ -44,7 +45,7 @@ const ProjectDetail = () => {
             <section className="relative min-h-[40vh] flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0">
                     <img
-                        src={project.images[0]}
+                        src={getAssetPath(project.images[0])}
                         alt={project.title}
                         className="w-full h-full object-cover opacity-50"
                     />
@@ -151,6 +152,7 @@ const ProjectDetail = () => {
                             {project.images.map((media, index) => {
                                 // Check if the media is a video based on file extension
                                 const isVideo = /\.(mp4|webm|mov)$/i.test(media);
+                                const mediaPath = getAssetPath(media);
 
                                 return (
                                     <motion.div
@@ -164,7 +166,7 @@ const ProjectDetail = () => {
                                     >
                                         {isVideo ? (
                                             <video
-                                                src={media}
+                                                src={mediaPath}
                                                 muted
                                                 playsInline
                                                 className="w-full h-full object-cover pointer-events-none"
@@ -174,7 +176,7 @@ const ProjectDetail = () => {
                                             </video>
                                         ) : (
                                             <img
-                                                src={media}
+                                                src={mediaPath}
                                                 alt={`${project.title} - Image ${index + 1}`}
                                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                                 loading="lazy"
