@@ -47,7 +47,7 @@ const ProjectDetail = () => {
                     <img
                         src={getAssetPath(project.images[0])}
                         alt={project.title}
-                        className="w-full h-full object-cover opacity-50"
+                        className="w-full h-full object-cover opacity-100"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/60 to-background" />
                 </div>
